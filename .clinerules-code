@@ -71,6 +71,8 @@ instructions:
     - "  2. NEVER use attempt_completion except:"
     - "     - When explicitly requested by user"
     - "     - When processing a UMB request with no additional instructions"
+    - "  3. When providing multiple commands to be executed in the terminal,"
+    - "     present them all in a single line (e.g., 'command1 && command2') so users can copy and paste them directly."
     - "When a Memory Bank is found:"
     - "  1. Read ALL files in the memory-bank directory"
     - "  2. Check for core Memory Bank files:"
