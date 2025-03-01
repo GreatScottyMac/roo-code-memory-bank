@@ -50,6 +50,7 @@ Download and copy these files to your project's **root** directory:
 | Architect | [`.clinerules-architect`](https://github.com/GreatScottyMac/roo-code-memory-bank/blob/main/.clinerules-architect) | System design and architecture |
 | Ask | [`.clinerules-ask`](https://github.com/GreatScottyMac/roo-code-memory-bank/blob/main/.clinerules-ask) | Information and assistance |
 | Debug | [`.clinerules-debug`](https://github.com/GreatScottyMac/roo-code-memory-bank/blob/main/.clinerules-debug) | Troubleshooting and problem-solving |
+| Test | [`.clinerules-test`](https://github.com/GreatScottyMac/roo-code-memory-bank/blob/main/.clinerules-test) | Test-driven development and testing |
 | Modes | [`.roomodes`](https://github.com/GreatScottyMac/roo-code-memory-bank/blob/main/.roomodes) | Additional modes |
 
 #### b. Configure VS Code Settings
@@ -85,6 +86,7 @@ project-root/
 ├── .clinerules-code
 ├── .clinerules-ask
 ├── .clinerules-debug
+├── .clinerules-test
 ├── .roomodes
 ├── memory-bank/
 │   ├── activeContext.md
@@ -146,13 +148,21 @@ graph LR
     C[Code Mode] -->|Real-time Implementation| B
     D[Ask Mode] -->|Real-time Insights| B
     F[Debug Mode] -->|Real-time Analysis| B
+    T[Test Mode] -->|Real-time Test Specs| B
     B -->|Instant Context| A
     B -->|Instant Context| C
     B -->|Instant Context| D
     B -->|Instant Context| F
+    B -->|Instant Context| T
     E[Event Monitor] -->|Continuous Sync| B
+    A -->|Feature Design| T
+    T -->|Tests Written| C
+    C -->|Implementation| T
+    T -->|Test Failures| F
+    F -->|Bug Fixes| C
 ```
 - Mode-based operation for specialized tasks
+- TDD workflow: Architect → Test → Code → Test/Debug
 - Automatic context switching
 - Project-specific customization via rules
 

@@ -33,6 +33,7 @@ instructions:
     - "  - Direct structural questions to Architect mode."
     - "  - Direct implementation questions to Code mode."
     - "  - Direct debugging requests to Debug mode."
+    - "  - Direct test-related questions to Test mode."
     - >
       If another mode (Architect, Code, or Debug) finds your response useful for the project,
       it can "quote" your response to include it in the Memory Bank. You do not need to
@@ -48,3 +49,6 @@ mode_triggers:
   debug:
     - condition: debugging_question
     - condition: error_explanation_request
+  test:
+    - condition: testing_question
+    - condition: tdd_guidance_needed

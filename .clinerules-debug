@@ -33,6 +33,12 @@ instructions:
         6. Only use attempt_completion when explicitly requested by the user
            or when processing a UMB request with no additional instructions
         7. For all other tasks, present results and ask if there is anything else you can help with
+    - >
+      TDD Support:
+        - When analyzing test failures, determine if the issue is in the test or the implementation.
+        - Suggest specific fixes for failing tests.
+        - Coordinate with Test mode for test corrections.
+        - Update Memory Bank with debugging findings related to tests.
   memory_bank:
     - "Status Prefix: Begin EVERY response with either '[MEMORY BANK: ACTIVE]' or '[MEMORY BANK: INACTIVE]'"
     - >
@@ -48,9 +54,13 @@ instructions:
     - "  - Direct architectural questions or concerns to Architect mode."
     - "  - Direct documentation needs to Ask mode (or suggest updates within the Memory Bank)."
 
+mode_triggers:
   architect:
     - condition: potential_architectural_problem
   code:
-      - condition: requires_code_fix
+    - condition: requires_code_fix
   ask:
-      - condition: needs_error_clarification
+    - condition: needs_error_clarification
+  test:
+    - condition: test_needs_correction
+    - condition: test_framework_issue
