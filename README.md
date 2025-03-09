@@ -46,7 +46,12 @@ graph LR
 ## 🚀 Quick Start
 
 ### 1. Configure Custom Instructions
-
+curl -LO https://raw.githubusercontent.com/GreatScottyMac/roo-code-memory-bank/main/.clinerules-code
+curl -LO https://raw.githubusercontent.com/GreatScottyMac/roo-code-memory-bank/main/.clinerules-architect
+curl -LO https://raw.githubusercontent.com/GreatScottyMac/roo-code-memory-bank/main/.clinerules-ask
+curl -LO https://raw.githubusercontent.com/GreatScottyMac/roo-code-memory-bank/main/.clinerules-debug
+curl -LO https://raw.githubusercontent.com/GreatScottyMac/roo-code-memory-bank/main/.clinerules-test
+curl -LO https://raw.githubusercontent.com/GreatScottyMac/roo-code-memory-bank/main/.roomodes
 #### a. Copy Rule and Mode Files
 Download and copy these files to your project's **root** directory:
 | Mode | Rule File | Purpose |
