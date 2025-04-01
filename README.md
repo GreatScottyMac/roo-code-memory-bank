@@ -47,8 +47,21 @@ graph LR
 
 ### 1. Configure Custom Instructions
 
+```bash
+curl -LO https://raw.githubusercontent.com/GreatScottyMac/roo-code-memory-bank/main/.clinerules-code
+curl -LO https://raw.githubusercontent.com/GreatScottyMac/roo-code-memory-bank/main/.clinerules-architect
+curl -LO https://raw.githubusercontent.com/GreatScottyMac/roo-code-memory-bank/main/.clinerules-ask
+curl -LO https://raw.githubusercontent.com/GreatScottyMac/roo-code-memory-bank/main/.clinerules-debug
+curl -LO https://raw.githubusercontent.com/GreatScottyMac/roo-code-memory-bank/main/.clinerules-test
+curl -LO https://raw.githubusercontent.com/GreatScottyMac/roo-code-memory-bank/main/.roomodes
+```
+
+Run this script in your terminal to download the necessary files.
+
 #### a. Copy Rule and Mode Files
+
 Download and copy these files to your project's **root** directory:
+
 | Mode | Rule File | Purpose |
 |------|-----------|----------|
 | Code | [`.clinerules-code`](https://github.com/GreatScottyMac/roo-code-memory-bank/blob/main/.clinerules-code) | Implementation and coding tasks |
@@ -61,7 +74,8 @@ Download and copy these files to your project's **root** directory:
 > 📝 **Special Note for Test Mode**: Test mode requires both the [`.clinerules-test`](https://github.com/GreatScottyMac/roo-code-memory-bank/blob/main/.clinerules-test) file AND [`.roomodes`](https://github.com/GreatScottyMac/roo-code-memory-bank/blob/main/.roomodes) file in your project root for proper functionality.
 
 #### b. Configure Roo Code Prompt Settings
-> ⚠️ **Important**: The system default descriptions in the Role Definition boxes can remain but leave the Mode-specific Custom Instructions boxes empty.  
+
+> ⚠️ **Important**: The system default descriptions in the Role Definition boxes can remain but leave the Mode-specific Custom Instructions boxes empty.
 
 ### 2. Initialize Memory Bank
 
@@ -138,11 +152,13 @@ graph TD
 ## ✨ Features
 
 ### 🧠 Persistent Context
+
 - Remembers project details across sessions
 - Maintains consistent understanding of your codebase
 - Tracks decisions and their rationale
 
 ### 🔄 Smart Workflows
+
 ```mermaid
 graph LR
     A[Architect Mode] -->|Real-time Design Updates| B[Memory Bank]
@@ -157,11 +173,13 @@ graph LR
     B -->|Instant Context| G
     E[Event Monitor] -->|Continuous Sync| B
 ```
+
 - Mode-based operation for specialized tasks
 - Automatic context switching
 - Project-specific customization via rules
 
 ### 📊 Knowledge Management
+
 - Structured documentation with clear purposes
 - Technical decision tracking with rationale
 - Automated progress monitoring
@@ -170,9 +188,11 @@ graph LR
 ## 💡 Pro Tips
 
 ### Architect Mode
+
 Roo Code Memory Bank's Architect mode is designed for high-level system design and project organization. This mode focuses on architectural decisions, system structure, and maintaining project-wide consistency.
 
 #### Key Capabilities
+
 - 🏗️ **System Design**: Create and maintain architecture
 - 📐 **Pattern Definition**: Establish coding patterns and standards
 - 🔄 **Project Structure**: Organize code and resources
@@ -180,7 +200,9 @@ Roo Code Memory Bank's Architect mode is designed for high-level system design a
 - 🤝 **Team Collaboration**: Guide implementation standards
 
 #### Real-time Update Triggers
+
 Architect mode actively monitors and updates Memory Bank files based on:
+
 - 🎯 Architectural decisions and changes
 - 📊 System pattern definitions
 - 🔄 Project structure updates
@@ -188,6 +210,7 @@ Architect mode actively monitors and updates Memory Bank files based on:
 - ⚡ Implementation guidance needs
 
 #### Memory Bank Integration
+
 ```mermaid
 graph TD
     A[Architect Mode] --> B[Design Decisions]
@@ -203,6 +226,7 @@ graph TD
 ```
 
 Switch to Architect mode when you need to:
+
 - Design system architecture
 - Define coding patterns
 - Structure new projects
@@ -210,9 +234,11 @@ Switch to Architect mode when you need to:
 - Make architectural decisions
 
 ### Code Mode
+
 Roo Code Memory Bank's Code mode is your primary interface for implementation and development. This mode specializes in writing, modifying, and maintaining code while following established patterns.
 
 #### Key Capabilities
+
 - 💻 **Code Creation**: Write new code and features
 - 🔧 **Code Modification**: Update existing implementations
 - 📚 **Documentation**: Add code comments and docs
@@ -220,7 +246,9 @@ Roo Code Memory Bank's Code mode is your primary interface for implementation an
 - 🔄 **Refactoring**: Improve code structure
 
 #### Real-time Update Triggers
+
 Code mode actively monitors and updates Memory Bank files based on:
+
 - 📝 Code implementations
 - 🔄 Feature updates
 - 🎯 Pattern applications
@@ -228,6 +256,7 @@ Code mode actively monitors and updates Memory Bank files based on:
 - 📚 Documentation updates
 
 #### Memory Bank Integration
+
 ```mermaid
 graph TD
     A[Code Mode] --> B[Implementation]
@@ -243,6 +272,7 @@ graph TD
 ```
 
 Switch to Code mode when you need to:
+
 - Implement new features
 - Modify existing code
 - Add documentation
@@ -250,9 +280,11 @@ Switch to Code mode when you need to:
 - Refactor code
 
 ### Ask Mode
+
 Roo Code Memory Bank's Ask mode serves as your knowledge base interface and documentation assistant. This mode excels at providing information, explaining concepts, and maintaining project knowledge.
 
 #### Key Capabilities
+
 - 💡 **Knowledge Sharing**: Access project insights
 - 📚 **Documentation**: Create and update docs
 - 🔍 **Code Explanation**: Clarify implementations
@@ -260,7 +292,9 @@ Roo Code Memory Bank's Ask mode serves as your knowledge base interface and docu
 - 📖 **Pattern Education**: Explain system patterns
 
 #### Real-time Update Triggers
+
 Ask mode actively monitors and updates Memory Bank files based on:
+
 - ❓ Knowledge requests
 - 📝 Documentation needs
 - 🔄 Pattern explanations
@@ -268,6 +302,7 @@ Ask mode actively monitors and updates Memory Bank files based on:
 - 📚 Learning outcomes
 
 #### Memory Bank Integration
+
 ```mermaid
 graph TD
     A[Ask Mode] --> B[Knowledge Sharing]
@@ -283,6 +318,7 @@ graph TD
 ```
 
 Switch to Ask mode when you need to:
+
 - Understand code patterns
 - Get implementation guidance
 - Create documentation
@@ -290,9 +326,11 @@ Switch to Ask mode when you need to:
 - Learn system concepts
 
 ### Debug Mode
+
 Roo Code Memory Bank's Debug mode specializes in systematic problem-solving and troubleshooting. This mode employs strategic analysis and verification to identify and resolve issues.
 
 #### Key Capabilities
+
 - 🔍 **Issue Investigation**: Analyze problems systematically
 - 📊 **Error Analysis**: Track error patterns
 - 🎯 **Root Cause Finding**: Identify core issues
@@ -300,7 +338,9 @@ Roo Code Memory Bank's Debug mode specializes in systematic problem-solving and 
 - 📝 **Problem Documentation**: Record findings
 
 #### Real-time Update Triggers
+
 Debug mode actively monitors and updates Memory Bank files based on:
+
 - 🐛 Bug discoveries
 - 📈 Performance issues
 - 🔄 Error patterns
@@ -308,6 +348,7 @@ Debug mode actively monitors and updates Memory Bank files based on:
 - 📝 Fix verifications
 
 #### Memory Bank Integration
+
 ```mermaid
 graph TD
     A[Debug Mode] --> B[Investigation]
@@ -323,6 +364,7 @@ graph TD
 ```
 
 Switch to Debug mode when you need to:
+
 - Investigate issues
 - Analyze errors
 - Find root causes
@@ -330,9 +372,11 @@ Switch to Debug mode when you need to:
 - Document problems
 
 ### Test Mode
+
 Roo Code Memory Bank includes a powerful Test mode for test-driven development and quality assurance. This mode operates with a focus on test creation, execution, and validation while maintaining code quality.
 
 #### Key Capabilities
+
 - 🧪 **Test-Driven Development**: Write tests before implementation
 - 📊 **Test Execution**: Run and monitor test suites
 - 🔍 **Coverage Analysis**: Track and improve test coverage
@@ -340,7 +384,9 @@ Roo Code Memory Bank includes a powerful Test mode for test-driven development a
 - ✅ **Test Result Management**: Track and report test outcomes
 
 #### Real-time Update Triggers
+
 Test mode actively monitors and updates Memory Bank files based on:
+
 - 🔄 Test executions and results
 - 📈 Coverage metrics and gaps
 - 🐛 Test failure patterns
@@ -348,6 +394,7 @@ Test mode actively monitors and updates Memory Bank files based on:
 - 📝 Test documentation needs
 
 #### Memory Bank Integration
+
 ```mermaid
 graph TD
     A[Test Mode] --> B[Test Creation]
@@ -363,6 +410,7 @@ graph TD
 ```
 
 Switch to Test mode when you need to:
+
 - Write new tests
 - Run test suites
 - Analyze test coverage
@@ -370,6 +418,7 @@ Switch to Test mode when you need to:
 - Document test results
 
 ### Session Management
+
 - ⚡ **Real-time Updates**: Memory Bank automatically stays synchronized with your work
 - 💾 **Manual Updates**: Use "UMB" or "update memory bank" as a fallback when:
   - Ending a session unexpectedly
