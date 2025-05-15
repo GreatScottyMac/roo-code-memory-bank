@@ -1,0 +1,124 @@
+memory_bank_strategy:
+  initialization: |
+    <thinking>
+    - **CHECK FOR MEMORY BANK:**
+    </thinking>
+        <thinking>
+      * First, check if the memory-bank/ directory exists.
+        </thinking>
+        <list_files>
+        <path>.</path>
+        <recursive>false</recursive>
+        </list_files>
+        <thinking>
+      * If memory-bank DOES exist, skip immediately to `if_memory_bank_exists`.
+        </thinking>
+  if_no_memory_bank: |
+    1. **Inform the User:**  
+        "No Memory Bank was found. I recommend creating one to maintain project context. Would you like to switch to Architect mode to do this?"
+    2. **Conditional Actions:**
+       * If the user declines:
+        <thinking>
+        I need to proceed with the task without Memory Bank functionality.
+        </thinking>
+        a. Inform the user that the Memory Bank will not be created.  
+        b. Set the status to '[MEMORY BANK: INACTIVE]'.  
+        c. Proceed with the task using the current context if needed or if no task is provided, use the `ask_followup_question` tool.
+       * If the user agrees:
+         Switch to Architect mode to create the Memory Bank.
+  if_memory_bank_exists: |
+    **READ *ALL* MEMORY BANK FILES**
+
+    <thinking>
+    I will read all memory bank files, one at a time, to understand the project context before proceeding.
+    </thinking>
+
+    Plan: Read all mandatory files sequentially.  
+    1. Read `productContext.md`  
+    2. Read `activeContext.md`  
+    3. Read `systemPatterns.md`  
+    4. Read `decisionLog.md`  
+    5. Read `progress.md`  
+    6. Set status to [MEMORY BANK: ACTIVE] and inform user.  
+    7. Proceed with the task using the context from the Memory Bank or if no task is provided, use the `ask_followup_question` tool.
+
+general:
+  status_prefix: "Begin EVERY response with either '[MEMORY BANK: ACTIVE]' or '[MEMORY BANK: INACTIVE]', according to the current state of the Memory Bank."
+
+memory_bank_updates:
+  frequency: "UPDATE MEMORY BANK THROUGHOUT THE CHAT SESSION, WHEN SIGNIFICANT COORDINATION EVENTS, MODE TRANSITIONS, OR HIGH-LEVEL PROJECT CHANGES OCCUR."
+  decisionLog.md:
+    trigger: "When the orchestrator facilitates or observes the finalization of a significant architectural decision involving other modes. Use judgment to determine significance."
+    action: |
+      <thinking>
+      I need to update decisionLog.md to record a decision that was reached through coordination. I will append the decision, rationale, and any noted implications.
+      Use append_to_file to append new information. Never overwrite existing entries. Always include a timestamp.
+      </thinking>
+    format: |
+      "[YYYY-MM-DD HH:MM:SS] - [Summary of Decision/Coordination Outcome]"
+  productContext.md:
+    trigger: "When orchestrating tasks reveals a significant change to the high-level project description, goals, features, or overall architecture. Use judgment to determine significance."
+    action: |
+      <thinking>
+      A fundamental change impacting the overall product context has been identified during orchestration. I need to update productContext.md.
+      Use append_to_file to append new information or use apply_diff to modify existing entries if necessary. Timestamp and summary of change will be appended as footnotes to the end of the file.
+      </thinking>
+    format: |
+      "[YYYY-MM-DD HH:MM:SS] - [Summary of Change]"
+  systemPatterns.md:
+    trigger: "When coordinating the introduction or modification of a project-wide architectural or coding pattern. Use judgment."
+    action: |
+      <thinking>
+      A new or modified system pattern is being established through coordination. I need to update systemPatterns.md.
+      Use append_to_file to append new patterns or use apply_diff to modify existing entries if warranted. Always include a timestamp.
+      </thinking>
+    format: |
+      "[YYYY-MM-DD HH:MM:SS] - [Description of Pattern/Change]"
+  activeContext.md:
+    trigger: "When the overall project focus shifts, a task is handed off between modes, a significant coordination point is reached, or cross-mode questions/issues arise. Use judgment."
+    action: |
+      <thinking>
+      The active context needs updating based on orchestration activities. I need to update activeContext.md, likely focusing on Current Focus, Recent Changes, or Open Questions/Issues related to coordination.
+      Use append_to_file to append to the relevant section or use apply_diff to modify existing entries if warranted. Always include a timestamp.
+      </thinking>
+    format: |
+      "[YYYY-MM-DD HH:MM:SS] - [Summary of Coordination/Focus Shift/Handoff/Issue]"
+  progress.md:
+    trigger: "When the orchestrator initiates, tracks the status of, or confirms the completion of high-level tasks, especially those spanning multiple modes or requiring coordination. Use judgment."
+    action: |
+      <thinking>
+      I need to update progress.md to reflect changes in high-level task status resulting from orchestration.
+      Use append_to_file to append the new entry, never overwrite existing entries. Always include a timestamp.
+      </thinking>
+    format: |
+      "[YYYY-MM-DD HH:MM:SS] - [Summary of Task Status Change/Coordination Update]"
+
+umb:
+  trigger: "^(Update Memory Bank|UMB)$"
+  instructions:
+    - "Halt Current Task: Stop current activity"
+    - "Acknowledge Command: '[MEMORY BANK: UPDATING]'"
+    - "Review Chat History"
+  core_update_process: |
+    1. Current Session Review:
+        - Analyze complete chat history, focusing on cross-mode interactions and coordination points.
+        - Extract information relevant to task handoffs, decisions reached, and overall progress.
+        - Track mode transitions and map activity relationships orchestrated during the session.
+    2. Comprehensive Updates:
+        - Synthesize information from the orchestrator's perspective, reflecting coordination efforts.
+        - Preserve context across modes as observed or managed by the orchestrator.
+        - Maintain threads of orchestrated activities.
+        - Document key mode interactions and handoffs.
+    3. Memory Bank Synchronization:
+        - Update all affected *.md files (esp. activeContext.md, progress.md, decisionLog.md) based on the session review.
+        - Ensure consistency from the orchestrator's high-level viewpoint.
+        - Preserve activity context and document continuation points for orchestrated tasks.
+  task_focus: "During a UMB update, focus on capturing clarifications, decisions, progress updates, and context related to the coordination of tasks and interactions between modes that occurred during the chat session. Add this information to the appropriate Memory Bank files, using the defined update formats. Do not perform actions specific to other modes (like writing code or deep debugging) unless explicitly part of an orchestrated task documented in the chat."
+  cross-mode_updates: "During a UMB update, ensure that all relevant information about coordinated activities and cross-mode context from the chat session is captured and added to the Memory Bank. Use this mode's update formats as a guide for adding this information to the appropriate Memory Bank files."
+  post_umb_actions:
+    - "Memory Bank fully synchronized from Orchestrator perspective"
+    - "Cross-mode contexts and coordination points preserved"
+    - "Session can be safely closed"
+    - "Next assistant (in any mode) will have updated high-level context"
+  override_file_restrictions: true
+  override_mode_restrictions: true
