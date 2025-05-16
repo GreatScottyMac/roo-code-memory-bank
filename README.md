@@ -307,6 +307,67 @@ Switch to Debug mode when you need to:
 - [Developer Deep Dive](https://github.com/GreatScottyMac/roo-code-memory-bank/blob/main/developer-primer.md)
 - [Update Log](https://github.com/GreatScottyMac/roo-code-memory-bank/blob/main/updates.md)
 
+## 🛠️ System Prompts and Utilities
+
+### System Prompt Files
+
+The `.roo` directory contains system prompt files that define the behavior of Roo's different modes:
+
+```
+.roo/
+├── example-system-prompt
+├── system-prompt-architech
+├── system-prompt-ask
+├── system-prompt-code
+└── system-prompt-debug
+```
+
+These files contain system variables that are used by Roo to understand your environment:
+
+| Variable | Description |
+|----------|-------------|
+| `CURRENT_WORKING_DIRECTORY` | The current working directory of your project |
+| `HOME_DIRECTORY` | Your home directory path |
+| `GLOBAL_CUSTOM_MODES_PATH` | Path to global custom modes configuration |
+| `OPERATING_SYSTEM` | Your operating system |
+| `DEFAULT_SHELL` | Your default shell |
+
+### Utility Scripts
+
+The `scripts` directory contains utilities for managing system prompt files:
+
+```
+scripts/
+├── populate-system-vars.js
+└── wipe-system-vars.js
+```
+
+#### Populate System Variables
+
+The `populate-system-vars.js` script automatically populates system variables in all system prompt files:
+
+```bash
+node scripts/populate-system-vars.js
+```
+
+This script:
+- Detects your current system environment
+- Updates all system-prompt files in the .roo directory
+- Provides a summary of updated files
+
+#### Wipe System Variables
+
+The `wipe-system-vars.js` script removes values from system variables in all system prompt files:
+
+```bash
+node scripts/wipe-system-vars.js
+```
+
+This script:
+- Clears all system variable values in system-prompt files
+- Useful for preparing files for version control
+- Preserves the structure of the files
+
 ---
 
 <div align="center">
